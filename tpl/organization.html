@@ -1,0 +1,128 @@
+<div id="block-content" class="page animsition" ng-controller="OrganizationController">
+	<div class="page-content clearfix" style="padding: 20px 0">
+		<div class="col-sm-3">
+			<!-- modal -->
+		      <div ng-controller="ModalDemoCtrl" class="panel b-a">
+		          <script type="text/ng-template" id="myModalContent.html">
+		            <div ng-include="'tpl/modal.html'"></div>
+		          </script>
+		          <div class="panel-body">
+		            <button class="btn btn-success" ng-click="open()">add</button>
+		            <button class="btn btn-default" ng-click="open('lg')">edit</button>
+		            <button class="btn btn-default" ng-click="open('sm')">remove</button>
+		          </div>
+		      </div>
+		      <!-- /modal -->
+			<div class="col">
+				<div class="b-a bg-light dk r r-2x">
+					<span ng-if="doing_async">...loading...</span>
+					<abn-tree 
+					  tree-data			= "my_data" 
+					  tree-control	 	= "my_tree" 
+					  on-select		 	= "my_tree_handler(branch)" 
+					  expand-level	 	= "2" 
+					  initial-selection	= "Granny Smith"
+					  icon-leaf		 	= "fa fa-file-o"
+					  icon-expand	 	= "fa fa-plus"
+					  icon-collapse		= "fa fa-minus"
+					  >
+					</abn-tree>
+				  </div>
+				</div>
+		</div>
+		<div class="col-sm-9">
+			<div class="panel">
+				<div class="panel-body">
+					<div class="row row-lg">
+						<div class="col-sm-12">
+							<h4 class="example-title">人员列表</h4>
+							<!-- 搜索部分 -->
+							<form ng-submit="search()" style="margin-bottom: 20px;">
+								<div class="form-inline">
+									<div class="form-group">
+										<label class="sr-only">搜索</label>
+										<input type="text" class="form-control" placeholder="请输入姓名关键字" ng-model="name" gl-only ng-keyup="search(name)" />
+									</div>
+									<div class="form-group pull-right" style="margin-right: 0;">
+										<a ng-href="manage/upload">
+											<button type="button" class="btn btn-primary">
+												<i class="icon wb-plus"></i>导入员工
+											</button>
+										</a>
+									</div>
+									<div class="form-group pull-right" style="margin-right: 10px;">
+										<a ng-href="manage/addStaff">
+											<button type="button" class="btn btn-primary">
+												<i class="icon wb-plus"></i>新增员工
+											</button>
+										</a>
+									</div>
+								</div>
+							</form>
+							<!-- 表格部分 -->
+							<div class="bootstrap-table font-size-12">
+								<div class="fixed-table-container" style="padding-bottom: 0px;">
+									<div class="fixed-table-body">
+										<table id="org-list" data-mobile-responsive="true" class="table table-hover">
+											<thead>
+												<tr>
+													<th>
+														<div class="th-inner">姓名</div>
+													</th>
+													<th>
+														<div class="th-inner">主管</div>
+													</th>
+													<th>
+														<div class="th-inner">职位</div>
+													</th>
+													<th>
+														<div class="th-inner">工号</div>
+													</th>
+													<th>
+														<div class="th-inner">分机号</div>
+													</th>
+													<th>
+														<div class="th-inner">状态</div>
+													</th>
+													<th>
+														<div class="th-inner">操作</div>
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr id="staff_{{staff.id}}" ng-repeat="staff in staffs" ng-click="togtr(staff.id)">
+													<td>{{staff.name}}</td>
+													<td>
+														<span ng-show="staff.id == currentDepartmentHeader">
+															<button class="btn btn-info btn-xs" type="button"><i class="icon wb-user"></i></button>
+														</span>
+													</td>
+													<td>{{staff.title}}</td>
+													<td>{{staff.eid}}</td>
+													<td>{{staff.tel}}</td>
+													<td>
+														<span ng-if="staff.userStatus[staff.userStatus.length - 1] == true" class="badge badge-success">已启用</span>
+														<span ng-if="staff.userStatus[staff.userStatus.length - 2] == true" class="badge badge-primary">门禁已授权</span>
+														<span ng-if="staff.userStatus[staff.userStatus.length - 3] == true" class="badge badge-primary">供需已授权</span>
+													</td>
+													<td>
+														<button class="btn btn-success btn-xs" type="button"><i class="icon wb-info"></i>查看</button>
+														<button class="btn btn-info btn-xs" type="button" ng-click="changeStaffStatus($event, staff.id)"><i class="icon wb-stats-bars"></i>状态</button>
+														<button class="btn btn-danger btn-xs" type="button" ng-click="delStaff($event, staff.id)"><i class="icon wb-trash"></i>删除</button>
+													</td>
+												</tr>
+												<tr ng-if="staffs.length <= 0">
+													<td colspan="6" class="text-center">没有数据！</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
