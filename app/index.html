@@ -1,0 +1,103 @@
+<!doctype html>
+<html data-ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>angular基础架构</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+    <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-sweetalert/dist/sweetalert.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="vendor/angular-bootstrap-nav-tree/dist/abn_tree.css" />
+	<link rel="stylesheet" href="styles/app.css" type="text/css" />
+    <!-- endbuild -->
+  </head>
+  <body ng-controller="AppCtrl">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+	<div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view></div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-confirm-modal/angular-confirm.js"></script>
+    <script src="bower_components/bootstrap-sweetalert/dist/sweetalert.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+
+        <!-- 入口模块 -->
+        <script src="scripts/app.js"></script>
+
+        <!-- 路由配置 -->
+		<script src="scripts/router.js"></script>
+
+		<!-- 过滤器 -->
+		<script src="scripts/filter.js"></script>
+
+		<!-- 引入的全屏指令 -->
+		<script src="scripts/services/ui-load.js"></script>
+		<script src="scripts/directives/ui-fullscreen.js"></script>
+
+		<!-- 引入的切换css类指令 -->
+		<script src="scripts/directives/ui-toggleclass.js"></script>
+
+		<!-- 引入的左侧导航交互指令 -->
+		<script src="scripts/directives/ui-nav.js"></script>
+
+		<!-- 树形菜单在原插件基础上做了扩展（改了template内容，新内容views/treemenu.html） -->
+		<script src="vendor/angular-bootstrap-nav-tree/dist/abn_tree_directive.js"></script>
+
+		<!-- 我的自定义指令 -->
+		<script src="scripts/directives.js"></script>
+
+		<!-- 我的自定义服务 -->
+		<script src="scripts/service.js"></script>
+
+		<!-- 控制器：公共引导 -->
+		<!--script src="scripts/appController.js"></script-->
+
+		<!-- 控制器：功能模块管理 -->
+		<script src="views/action/action.js"></script>
+		<script src="views/action/actionTree/addDelEdit.js"></script>
+
+		<!-- 控制器：组织机构管理 -->
+		<script src="views/organization/organization.js"></script>
+		<script src="views/organization/organizationTree/organizationTreeForm.js"></script>
+		<script src="views/organization/organizationList/organizationListForm.js"></script>
+
+		<!-- 控制器：角色极限管理 -->
+		<script src="views/role/role.js"></script>
+		<script src="views/role/roleForm/roleForm.js"></script>
+
+		<!-- 控制器：在线用户管理 -->
+		<script src="views/onlineUser/onlineUser.js"></script>
+		<script src="views/onlineUser/onlineUserForm/onlineUserForm.js"></script>
+
+		<!-- 控制器：登录 -->
+		<script src="views/access/signin.js"></script>
+
+        <!-- endbuild -->
+</body>
+</html>

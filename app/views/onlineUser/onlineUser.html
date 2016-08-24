@@ -1,0 +1,86 @@
+<div class="clearfix" style="padding: 20px 0" ng-controller="RoleController">
+	<div class="col-sm-12">
+		<div class="panel panel_full" ng-style="app.wholeH">
+			<div class="panel-body">
+				<h4 class="example-title">在线用户列表</h4>
+				<div class="bootstrap-table font-size-12">
+					<!-- 搜索部分 -->
+					<form style="margin-bottom: 20px;">
+						<div class="form-inline">
+							<div class="form-group">
+								<label class="sr-only">搜索</label>
+								<input type="text" class="form-control" placeholder="请输入关键字搜索" ng-model="keyword" />
+							</div>
+							<div class="form-group pull-right" style="margin-right: 10px;">
+								<a ui-sref="app.onlineUser.add">
+									<button type="button" class="btn btn-info">
+										<i class="glyphicon glyphicon-plus"></i> 新增
+									</button>
+								</a>
+							</div>
+						</div>
+					</form>
+					<!-- 表格部分 -->
+					<div class="fixed-table-container" style="padding-bottom: 50px;">
+						<div class="fixed-table-body">
+							<table class="table table-bordered table-hover text-center">
+								<thead>
+									<tr>
+										<th>序号</th>
+										<th>登陆名</th>
+										<th>姓名</th>
+										<th>登陆时间</th>
+										<th>最后操作时间</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="data in users | filter: keyword | pageBy: currentPage: limit">
+										<td>{{$index + 1}}</td>
+										<td>{{data.loginName}}</td>
+										<td>{{data.name}}</td>
+										<td>{{data.loginTime}}</td>
+										<td>{{data.oparateTime}}</td>
+										<td>
+											<button class="btn btn-info btn-xs" type="button" ui-sref="app.onlineUser.edit({id: data.id, label: data.label})"><i class="glyphicon glyphicon-edit"></i> 编辑</button>
+											<button class="btn btn-danger btn-xs" type="button" ng-click="delRowFromTable(data.id)"><i class="glyphicon glyphicon-trash"></i> 删除</button>
+										</td>
+									</tr>
+									<tr ng-if="roles.length <= 0">
+										<td colspan="6" class="text-center">没有数据！</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- 页码部分 -->
+					<div class="fixed-table-pagination">
+						<div class="pull-left">
+							<span>显示 {{limit * (currentPage - 1) + 1}} 到 {{limit * currentPage > total ? total : limit * currentPage }}，共 {{totalItems}} 条记录</span>
+							<label>每页显示</label>
+							<select ng-model="limit" ng-options="page as page for page in [5,10,20,50,100]"></select>
+							<span>条记录</span>
+						</div>
+											
+						<ul 
+						    uib-pagination 
+						    boundary-links="true" 
+						    total-items="totalItems" 
+						    ng-model="currentPage" 
+						    class="pagination-sm pull-right" 
+						    previous-text="&lsaquo;" 
+						    next-text="&rsaquo;" 
+						    first-text="&laquo;" 
+						    last-text="&raquo;"
+						    ng-change="setPage(currentPage)",
+						    items-per-page="limit"
+						>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div ui-view></div>
+</div>

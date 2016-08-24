@@ -1,0 +1,32 @@
+[
+	{
+		"roleName": "超级管理员",
+		"status": 1,
+		"id": 6
+	},
+	{
+		"roleName": "系统管理员",
+		"status": 1,
+		"id": 1
+	},
+	{
+		"roleName": "角色一",
+		"status": 0,
+		"id": 2
+	},
+	{
+		"roleName": "角色二",
+		"status": 1,
+		"id": 3
+	},
+	{
+		"roleName": "角色三",
+		"status": 0,
+		"id": 4
+	},
+	{
+		"roleName": "角色四",
+		"status": 1,
+		"id": 5
+	}
+]

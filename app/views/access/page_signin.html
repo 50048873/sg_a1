@@ -1,0 +1,38 @@
+<div class="pageLogin">
+	<div class="login_bg">
+		<img class="logo" src="../img/logo.png" alt="logo">
+		<img class="dlk" src="../img/dlk.png" alt="dlk">
+
+		<form novalidate name="loginForm" id="login-form" class="form-horizontal">
+			<div class="form-group">
+				<label for="username" class="col-sm-2 control-label">账号</label>
+				<div class="col-sm-10">
+					<input type="text" id="username" name="username" class="form-control" placeholder="用户名" ng-minlength=3 ng-maxlength=16 required ng-model="username" />
+					<div class="text-danger animated fadeInDown" ng-show="loginForm.username.$dirty">
+		                <small ng-show="loginForm.username.$error.required">请填写用户名</small>
+		                <small ng-show="loginForm.username.$error.minlength">您的用户名长度至少应有3位</small>
+		                <small ng-show="loginForm.username.$error.maxlength">您的用户名长度最多应有16位</small>
+		            </div>
+			    </div>
+				
+			</div>
+
+			<div class="form-group">
+				<label for="password" class="col-sm-2 control-label">密码</label>
+				<div class="col-sm-10">
+					<input type="password" name="password" class="form-control" placeholder="密码" ng-minlength=3 ng-maxlength=16 required ng-model="password" />
+					<div class="text-danger animated fadeInDown" ng-show="loginForm.password.$dirty">
+		                <small ng-show="loginForm.password.$error.required">请提供登录密码</small>
+		                <small ng-show="loginForm.password.$error.minlength">您的密码长度至少应有3位</small>
+	                <small ng-show="loginForm.password.$error.maxlength">您的密码长度最多应有16位</small>
+	            </div>
+				</div>
+			</div>
+
+			<button type="submit" ng-click="login()">
+				<img ng-show="!logining" src="img/login_submit0{{login_num}}.png" ng-mouseenter="login_num = 2;" ng-mouseleave="login_num = 1;" />
+				<img ng-show="logining" src="img/logining.png" />
+			</button>
+		</form>
+	</div>
+</div>

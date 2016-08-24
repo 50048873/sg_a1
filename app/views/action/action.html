@@ -1,0 +1,140 @@
+<div class="clearfix" style="padding: 20px 0" ng-controller="ActionController">
+	<div class="col-sm-3">
+		<div style="background-color: white;">
+			<abn-tree 
+				tree-data			= "tree_data" 
+				tree-control	 	= "my_tree" 
+				on-select		 	= "my_tree_handler(branch)" 
+				expand-level	 	= "2" 
+				initial-selection	= "所有菜单"
+				icon-leaf		 	= "fa fa-file-o"
+				icon-expand	 		= "fa fa-plus"
+				icon-collapse		= "fa fa-minus",
+				path				= "action"
+				>
+			</abn-tree>
+		</div>
+	</div>
+
+	<div class="col-sm-9">
+		<div class="panel panel_full" ng-style="app.wholeH">
+			<div class="panel-body">
+				<h4 class="example-title">功能模块列表</h4>
+				<div class="bootstrap-table font-size-12">
+					<!-- 搜索部分 -->
+					<form ng-submit="search()" style="margin-bottom: 20px;">
+						<div class="form-inline">
+							<div class="form-group">
+								<label class="sr-only">搜索</label>
+								<input type="text" class="form-control" placeholder="请输入关键字" ng-model="name" gl-only ng-keyup="search(name)" />
+							</div>
+							<div class="form-group">
+								<button id="searchBtn" type="submit" class="btn btn-outline btn-default"><i aria-hidden="true" class="glyphicon glyphicon-search"></i></button>
+							</div>
+							<div class="form-group pull-right" style="margin-right: 0;">
+								<a ng-click="batchDelete()">
+									<button type="button" class="btn btn-danger">
+										<i class="glyphicon glyphicon-trash"></i> 批量删除
+									</button>
+								</a>
+							</div>
+							<div class="form-group pull-right" style="margin-right: 10px;">
+								<a ui-sref="app.action.add({id: data.id})" ng-click="add(data)">
+									<button type="button" class="btn btn-info">
+										<i class="glyphicon glyphicon-plus"></i> 新增
+									</button>
+								</a>
+							</div>
+						</div>
+					</form>
+					<!-- 表格部分 -->
+					<div class="fixed-table-container" style="padding-bottom: 30px;">
+						<div class="fixed-table-body">
+							<table class="table table-bordered table-hover text-center">
+								<thead>
+									<tr>
+										<th>
+											<label class="checkbox-inline i-checks" ng-click="checkAll(listData)">
+												<input type="checkbox" ng-model="isAllChecked"><i></i>
+											</label>
+										</th>
+										<th>模块名称</th>
+										<th>模块地址</th>
+										<th>模块操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="data in listData">
+										<td>
+											<label class="checkbox-inline i-checks">
+												<input type="checkbox" ng-click="check(data)" ng-model="data.isChecked"><i></i>
+											</label>
+										</td>
+										<td>{{data.label}}</td>
+										<td>{{data.id}}</td>
+										<td>
+											<button class="btn btn-info btn-xs" type="button" ui-sref="app.action.edit({id: data.id, label: data.label})"><i class="glyphicon glyphicon-edit"></i> 编辑</button>
+											<button class="btn btn-danger btn-xs" type="button" ng-click="delRowFromTable(data.id)"><i class="glyphicon glyphicon-trash"></i> 删除</button>
+										</td>
+									</tr>
+									<tr ng-if="listData.length <= 0">
+										<td colspan="6" class="text-center">没有数据！</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- 页码部分 -->
+					<div class="clearfix fixed-table-pagination">
+						<div class="pull-left" style="margin: 10px 0;">
+							<span class="pagination-info">显示第 {{searchCondition.limit * (currentPage - 1) + 1}} 到第 {{searchCondition.limit * currentPage > total ? total : searchCondition.limit * currentPage }} 条记录，总共 {{total}} 条记录</span>
+							<label class="page-list">每页显示</label>
+							<select selectpicker class="" ng-model="searchCondition.limit" ng-change="search()" ng-options="page as page for page in [10,25,50,100,200]">
+							</select>
+							<span>条记录</span>
+						</div>
+											
+						<div class="pull-right">
+							<paging
+									class="small"
+									page="currentPage" 
+									page-size="searchCondition.limit" 
+									total="total"
+									adjacent="{{adjacent}}"
+									dots="{{dots}}"
+									scroll-top="{{scrollTop}}" 
+									hide-if-empty="{{hideIfEmpty}}"
+									ul-class="{{ulClass}}"
+									active-class="{{activeClass}}"
+									disabled-class="{{disabledClass}}"
+									show-prev-next="{{showPrevNext}}"
+									paging-action="searchByPage('Paging Clicked', page, searchCondition.limit, total)">
+							</paging>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div ui-view></div>
+</div>
+
+<!-- Modal -->
+<!--div class="modal fade" id="orgModalDelete" tabindex="-1" role="dialog" aria-labelledby="orgModalDeleteLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="orgModalDeleteLabel">删除确认</h4>
+			</div>
+			<div class="modal-body text-center">
+				<p style="padding: 20px 0;">您确认要删除吗？</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">关闭</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save(info)">确认</button>
+			</div>
+		</div>
+	</div>
+</div-->

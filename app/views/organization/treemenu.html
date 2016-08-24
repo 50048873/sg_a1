@@ -1,0 +1,15 @@
+<ul class="nav nav-list nav-pills nav-stacked abn-tree">
+    <li ng-repeat="row in tree_rows | filter:{visible:true} track by row.branch.uid" ng-animate="'abn-tree-animate'" ng-class="'level-' + {{ row.level }} + (row.branch.selected ? ' active':'') + ' ' +row.classes.join(' ')" class="abn-tree-row" tree-operate>
+    	<a ng-click="user_clicks_branch(row.branch)">
+    		<div class="treeOperate">
+				<span ui-sref="app.organization.addTree({id: row.branch.id, label: row.label})" title="新增"><i class="glyphicon glyphicon-plus"></i></span>
+				<span ui-sref="app.organization.delTree({id: row.branch.id})" title="删除"><i class="glyphicon glyphicon-minus"></i></span>
+				<span ui-sref="app.organization.editTree({id: row.branch.id, label: row.label})" title="编辑"><i class="glyphicon glyphicon-edit"></i></span>
+				<!--span ui-sref="app.organization.moveTree({id: row.branch.id, label: row.label})" title="上移"><i class="glyphicon glyphicon-arrow-up"></i></span>
+				<span ui-sref="app.organization.moveTree({id: row.branch.id, label: row.label})" title="下移"><i class="glyphicon glyphicon-arrow-down"></i></span-->
+			</div>
+    		<i ng-class="row.tree_icon" ng-click="row.branch.expanded = !row.branch.expanded" class="indented tree-icon"> </i>
+    		<span class="indented tree-label">{{ row.label }} </span>
+    	</a>
+    </li>
+</ul>

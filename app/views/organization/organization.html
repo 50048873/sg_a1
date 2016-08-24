@@ -1,0 +1,121 @@
+<div class="clearfix" style="padding: 20px 0" ng-controller="OrganizationController">
+	<div class="col-sm-3">
+		<div style="background-color: white;">
+			<h5 class="tree-title">组织机构列表<a ui-sref="app.organization.addTree" title="新增"><i class="glyphicon glyphicon-plus"></i></a></h5>
+			<abn-tree 
+				tree-data			= "tree_data" 
+				tree-control	 	= "my_tree" 
+				on-select		 	= "my_tree_handler(branch)" 
+				expand-level	 	= "2" 
+				initial-selection	= "所有菜单"
+				icon-leaf		 	= "fa fa-file-o"
+				icon-expand	 		= "fa fa-plus"
+				icon-collapse		= "fa fa-minus"
+				path				= "organization"
+				>
+			</abn-tree>
+		</div>
+	</div>
+
+	<div class="col-sm-9">
+		<div class="panel panel_full" ng-style="app.wholeH">
+			<div class="panel-body">
+				<h4 class="example-title">人员信息列表</h4>
+				<div class="bootstrap-table font-size-12">
+					<!-- 搜索部分 -->
+					<form style="margin-bottom: 20px;">
+						<div class="form-inline">
+							<div class="form-group">
+								<label class="sr-only">搜索</label>
+								<input type="text" class="form-control" placeholder="请输入关键字搜索" ng-model="keyword" />
+							</div>
+							<div class="form-group pull-right" style="margin-right: 0;">
+								<a ng-click="batchDelete()">
+									<button type="button" class="btn btn-danger">
+										<i class="glyphicon glyphicon-trash"></i> 批量删除
+									</button>
+								</a>
+							</div>
+							<div class="form-group pull-right" style="margin-right: 10px;">
+								<a ui-sref="app.organization.addList({id: data.id})" ng-click="add(data)">
+									<button type="button" class="btn btn-info">
+										<i class="glyphicon glyphicon-plus"></i> 新增
+									</button>
+								</a>
+							</div>
+						</div>
+					</form>
+					<!-- 表格部分 -->
+					<div class="fixed-table-container" style="padding-bottom: 50px;">
+						<div class="fixed-table-body">
+							<table class="table table-bordered table-hover text-center">
+								<thead>
+									<tr>
+										<th>
+											<label class="checkbox-inline i-checks" ng-click="checkAll(employees)">
+												<input type="checkbox" ng-model="isAllChecked"><i></i>
+											</label>
+										</th>
+										<th>登录名</th>
+										<th>姓名</th>
+										<th>性别</th>
+										<th>所属部门</th>
+										<th>角色</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="data in employees | filter: keyword | pageBy: currentPage: limit">
+										<td>
+											<label class="checkbox-inline i-checks">
+												<input type="checkbox" ng-click="check(data)" ng-model="data.isChecked"><i></i>
+											</label>
+										</td>
+										<td>{{data.loginName}}</td>
+										<td>{{data.name}}</td>
+										<td>{{data.sex}}</td>
+										<td>{{data.department}}</td>
+										<td>{{data.role}}</td>
+										<td>
+											<button class="btn btn-info btn-xs" type="button" ui-sref="app.organization.editList({id: data.id, label: data.label})"><i class="glyphicon glyphicon-edit"></i> 编辑</button>
+											<button class="btn btn-danger btn-xs" type="button" ng-click="delRowFromTable(data.id)"><i class="glyphicon glyphicon-trash"></i> 删除</button>
+										</td>
+									</tr>
+									<tr ng-if="employees.length <= 0">
+										<td colspan="6" class="text-center">没有数据！</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- 页码部分 -->
+					<div class="fixed-table-pagination">
+						<div class="pull-left">
+							<span>显示 {{limit * (currentPage - 1) + 1}} 到 {{limit * currentPage > total ? total : limit * currentPage }}，共 {{totalItems}} 条记录</span>
+							<label>每页显示</label>
+							<select ng-model="limit" ng-options="page as page for page in [5,10,20,50,100]"></select>
+							<span>条记录</span>
+						</div>
+											
+						<ul 
+						    uib-pagination 
+						    boundary-links="true" 
+						    total-items="totalItems" 
+						    ng-model="currentPage" 
+						    class="pagination-sm pull-right" 
+						    previous-text="&lsaquo;" 
+						    next-text="&rsaquo;" 
+						    first-text="&laquo;" 
+						    last-text="&raquo;"
+						    ng-change="setPage(currentPage)",
+						    items-per-page="limit"
+						>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div ui-view></div>
+</div> 

@@ -1,0 +1,49 @@
+<!-- 组织机构管理————新增模块、编辑模块 -->
+<div class="modal fade" id="organizationModal" tabindex="-1" role="dialog" aria-labelledby="organizationModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="organizationModalLabel">{{modal_title}}</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="name" class="col-sm-4 control-label">登录名</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="name" placeholder="登录名" ng-model="info.loginName">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name" class="col-sm-4 control-label">姓名</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="name" placeholder="姓名" ng-model="info.name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name" class="col-sm-4 control-label">姓别</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="name" placeholder="姓别" ng-model="info.sex">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name" class="col-sm-4 control-label">所属部门</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="name" placeholder="所属部门" ng-model="info.department">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name" class="col-sm-4 control-label">角色</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="name" placeholder="角色" ng-model="info.role">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">关闭</button>
+				<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="save(info)">保存</button>
+			</div>
+		</div>
+	</div>
+</div>

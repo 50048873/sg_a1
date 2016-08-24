@@ -1,0 +1,66 @@
+[
+	{
+		"name": "张三1",
+		"sex": "男",
+		"department": "部门1",
+		"role": "主治医师",
+		"loginName": "aaaa01",
+		"id": 1
+	},
+	{
+		"name": "张三2",
+		"sex": "男",
+		"department": "部门1",
+		"role": "主治医师",
+		"loginName": "aaaa01",
+		"id": 2
+	},
+	{
+		"name": "李四1",
+		"sex": "男",
+		"department": "部门2",
+		"role": "",
+		"loginName": "aaaa01",
+		"id": 3
+	},
+	{
+		"name": "李四2",
+		"sex": "男",
+		"department": "部门2",
+		"role": "",
+		"loginName": "aaaa01",
+		"id": 4
+	},
+	{
+		"name": "王五1",
+		"sex": "男",
+		"department": "部门3",
+		"role": "",
+		"loginName": "aaaa01",
+		"id": 4
+	},
+	{
+		"name": "王五2",
+		"sex": "男",
+		"department": "部门3",
+		"role": "",
+		"loginName": "aaaa01",
+		"id": 4
+	},
+	{
+		"name": "赵六1",
+		"sex": "男",
+		"department": "部门4",
+		"role": "",
+		"loginName": "aaaa01",
+		"id": 4
+	},
+	{
+		"name": "赵六2",
+		"sex": "男",
+		"department": "部门4",
+		"role": "",
+		"loginName": "aaaa01",
+		"id": 4
+	}
+]

@@ -1,0 +1,50 @@
+<!-- 功能模块管理————新增模块、编辑模块 -->
+<div class="modal fade" id="actionModal" tabindex="-1" role="dialog" aria-labelledby="actionModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="actionModalLabel">{{modal_title}}</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">模块名称</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="name" placeholder="模块名称" ng-model="info.name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="preLevel" class="col-sm-2 control-label">上级模块</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="preLevel" placeholder="上级模块" ng-model="info.preLevel" disabled="disabled">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">关闭</button>
+				<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="save(info)">保存</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 功能模块管理————删除模块 -->
+<div class="modal fade" id="orgModalDelete" tabindex="-1" role="dialog" aria-labelledby="orgModalDeleteLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="orgModalDeleteLabel">删除确认</h4>
+			</div>
+			<div class="modal-body">
+				您确认要删除吗？
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">关闭</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save(info)">确认</button>
+			</div>
+		</div>
+	</div>
+</div>
